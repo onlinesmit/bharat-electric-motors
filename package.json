@@ -1,0 +1,21 @@
+{
+  "name": "bharat-electric-motors",
+  "version": "1.0.0",
+  "description": "Modern, responsive, high-converting website for Bharat Electric Motors showroom in Handiya Prayagraj.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "ev-showroom",
+    "electric-vehicles",
+    "bharat-electric-motors",
+    "handiya-prayagraj",
+    "electric-scooters",
+    "emi-calculator",
+    "fuel-savings"
+  ],
+  "author": "Bharat Electric Motors (Designed & Developed by Smit & Team)",
+  "license": "MIT"
+}
