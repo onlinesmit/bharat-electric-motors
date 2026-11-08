@@ -35,6 +35,9 @@ const App = {
     if (window.InvoiceGenerator) {
       window.InvoiceGenerator.init();
     }
+    if (window.CustomerDeliveries) {
+      window.CustomerDeliveries.init();
+    }
   },
 
   // ==================== HERO 360° & COLOR STUDIO ====================
@@ -167,18 +170,23 @@ const App = {
     grid.innerHTML = products.map(ev => this.renderProductCard(ev)).join("");
   },
 
+  // Helper to resolve precision SVG for any category
+  getVehicleSVG: function(category, colorHex) {
+    if (!window.VEHICLE_GRAPHICS) return "";
+    if (category === "scooter") return window.VEHICLE_GRAPHICS.getScooterSVG(colorHex);
+    if (category === "bike") return window.VEHICLE_GRAPHICS.getMotorcycleSVG(colorHex);
+    if (category === "cycle") return window.VEHICLE_GRAPHICS.getCycleSVG(colorHex);
+    if (category === "battery") return window.VEHICLE_GRAPHICS.getBatterySVG(colorHex);
+    if (category === "loader") return window.VEHICLE_GRAPHICS.getLoaderSVG(colorHex);
+    return window.VEHICLE_GRAPHICS.getScooterSVG(colorHex);
+  },
+
   renderProductCard: function(ev) {
     const isComparing = this.selectedForCompare.includes(ev.id);
     const primaryColor = ev.colors && ev.colors.length > 0 ? ev.colors[0].hex : (ev.accentColor || "#10B981");
 
     const onRoadEst = (ev.exShowroomPrice - ev.subsidy + ev.rtoCharges + ev.insurance);
-
-    let vehicleSVG = "";
-    if (window.VEHICLE_GRAPHICS) {
-      if (ev.category === "scooter") vehicleSVG = window.VEHICLE_GRAPHICS.getScooterSVG(primaryColor);
-      else if (ev.category === "bike") vehicleSVG = window.VEHICLE_GRAPHICS.getMotorcycleSVG(primaryColor);
-      else vehicleSVG = window.VEHICLE_GRAPHICS.getCycleSVG(primaryColor);
-    }
+    const vehicleSVG = this.getVehicleSVG(ev.category, primaryColor);
 
     return `
       <div class="product-card group relative bg-slate-900/95 border border-slate-800 hover:border-emerald-500/50 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10">
@@ -343,11 +351,9 @@ const App = {
     const list = window.BHARAT_VEHICLES || [];
     const ev = list.find(item => item.id === evId);
     const container = document.getElementById(`svg-container-${evId}`);
-    if (!ev || !container || !window.VEHICLE_GRAPHICS) return;
+    if (!ev || !container) return;
 
-    if (ev.category === "scooter") container.innerHTML = window.VEHICLE_GRAPHICS.getScooterSVG(hexColor);
-    else if (ev.category === "bike") container.innerHTML = window.VEHICLE_GRAPHICS.getMotorcycleSVG(hexColor);
-    else container.innerHTML = window.VEHICLE_GRAPHICS.getCycleSVG(hexColor);
+    container.innerHTML = this.getVehicleSVG(ev.category, hexColor);
   },
 
   // ==================== BHARAT MOTORS & POWERTRAIN SECTION ====================
@@ -500,12 +506,7 @@ const App = {
     if (!ev || !modal || !container) return;
 
     const primaryColor = ev.colors && ev.colors.length > 0 ? ev.colors[0].hex : (ev.accentColor || "#10B981");
-    let modalSVG = "";
-    if (window.VEHICLE_GRAPHICS) {
-      if (ev.category === "scooter") modalSVG = window.VEHICLE_GRAPHICS.getScooterSVG(primaryColor);
-      else if (ev.category === "bike") modalSVG = window.VEHICLE_GRAPHICS.getMotorcycleSVG(primaryColor);
-      else modalSVG = window.VEHICLE_GRAPHICS.getCycleSVG(primaryColor);
-    }
+    const modalSVG = this.getVehicleSVG(ev.category, primaryColor);
 
     const netOnRoad = (ev.exShowroomPrice - ev.subsidy + ev.rtoCharges + ev.insurance);
 
@@ -681,11 +682,9 @@ const App = {
     const list = window.BHARAT_VEHICLES || [];
     const ev = list.find(item => item.id === evId);
     const canvas = document.getElementById("modal-svg-canvas");
-    if (!ev || !canvas || !window.VEHICLE_GRAPHICS) return;
+    if (!ev || !canvas) return;
 
-    if (ev.category === "scooter") canvas.innerHTML = window.VEHICLE_GRAPHICS.getScooterSVG(hexColor);
-    else if (ev.category === "bike") canvas.innerHTML = window.VEHICLE_GRAPHICS.getMotorcycleSVG(hexColor);
-    else canvas.innerHTML = window.VEHICLE_GRAPHICS.getCycleSVG(hexColor);
+    canvas.innerHTML = this.getVehicleSVG(ev.category, hexColor);
   },
 
   closeProductModal: function() {
@@ -922,12 +921,14 @@ const App = {
       const compareModal = document.getElementById("compare-modal");
       const ticketModal = document.getElementById("confirmation-ticket-modal");
       const invoiceModal = document.getElementById("invoice-generator-modal");
+      const deliveryModal = document.getElementById("customer-delivery-modal");
 
       if (e.target === prodModal) App.closeProductModal();
       if (e.target === rideModal && window.BookingEngine) window.BookingEngine.closeTestRideModal();
       if (e.target === compareModal) App.closeCompareModal();
       if (e.target === ticketModal && window.BookingEngine) window.BookingEngine.closeTicketModal();
       if (e.target === invoiceModal && window.InvoiceGenerator) window.InvoiceGenerator.closeModal();
+      if (e.target === deliveryModal && window.CustomerDeliveries) window.CustomerDeliveries.closeModal();
     });
 
     window.addEventListener("keydown", (e) => {
@@ -941,6 +942,9 @@ const App = {
         }
         if (window.InvoiceGenerator) {
           window.InvoiceGenerator.closeModal();
+        }
+        if (window.CustomerDeliveries) {
+          window.CustomerDeliveries.closeModal();
         }
       }
     });
@@ -966,10 +970,300 @@ const App = {
   }
 };
 
+// ==================== CUSTOMER DELIVERY & HANDOVER GALLERY ====================
+const CustomerDeliveries = {
+  STORAGE_KEY: "bharat_customer_deliveries",
+  deliveries: [],
+  selectedImageData: null,
+
+  init: function() {
+    this.loadDeliveries();
+    this.render();
+    this.setupListeners();
+  },
+
+  loadDeliveries: function() {
+    try {
+      const stored = localStorage.getItem(this.STORAGE_KEY);
+      if (stored) {
+        this.deliveries = JSON.parse(stored);
+      } else {
+        // Seed initial default showcase deliveries
+        this.deliveries = (window.BHARAT_DEFAULT_DELIVERIES || []).slice();
+        this.saveToStorage();
+      }
+    } catch (e) {
+      console.error("Error reading customer deliveries from localStorage", e);
+      this.deliveries = (window.BHARAT_DEFAULT_DELIVERIES || []).slice();
+    }
+  },
+
+  saveToStorage: function() {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.deliveries));
+    } catch (e) {
+      console.warn("Could not save deliveries to localStorage", e);
+    }
+  },
+
+  render: function() {
+    const grid = document.getElementById("customer-deliveries-grid");
+    const countBadge = document.getElementById("delivery-photos-count");
+    if (!grid) return;
+
+    if (countBadge) {
+      countBadge.textContent = `${this.deliveries.length} Deliveries`;
+    }
+
+    if (this.deliveries.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full py-12 text-center bg-slate-900/60 rounded-3xl border border-dashed border-slate-800 p-8">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-slate-800 flex items-center justify-center text-3xl">📸</div>
+          <h4 class="text-white font-bold text-base">No Customer Photos Uploaded Yet</h4>
+          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Click below to upload the first photo with a customer outside our Handia showroom.</p>
+          <button onclick="CustomerDeliveries.openModal()" class="mt-4 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-emerald-500/20">
+            + Upload Delivery Photo
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = this.deliveries.map(del => `
+      <div class="group relative bg-slate-900/90 border border-slate-800 hover:border-emerald-500/40 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 flex flex-col justify-between">
+        
+        <!-- Photo Container -->
+        <div class="relative h-60 w-full bg-slate-950 overflow-hidden">
+          <img 
+            src="${del.photoUrl}" 
+            alt="Customer Delivery - ${del.customerName}" 
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&auto=format&fit=crop&q=80'"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          
+          <!-- Badges -->
+          <div class="absolute top-3 left-3 flex items-center gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300 bg-slate-950/80 backdrop-blur-md border border-emerald-500/40 px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-md">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Key Handover
+            </span>
+            ${del.isCustom ? `
+              <span class="text-[10px] font-bold text-amber-300 bg-amber-500/20 backdrop-blur-md border border-amber-500/40 px-2 py-0.5 rounded-full">
+                Recent Photo
+              </span>
+            ` : ''}
+          </div>
+
+          <div class="absolute top-3 right-3 flex items-center gap-1">
+            <button 
+              onclick="CustomerDeliveries.deleteDelivery('${del.id}')" 
+              title="Delete this photo" 
+              class="w-7 h-7 rounded-full bg-slate-950/80 hover:bg-red-500/80 text-slate-400 hover:text-white backdrop-blur-md flex items-center justify-center transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+
+          <!-- Bottom bar inside photo -->
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
+            <span class="font-black text-white text-base drop-shadow-md truncate">${del.customerName}</span>
+            <span class="text-[11px] text-slate-300 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60">${del.deliveryDate}</span>
+          </div>
+        </div>
+
+        <!-- Details Box -->
+        <div class="p-5 flex flex-col justify-between flex-1">
+          <div>
+            <div class="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold mb-2">
+              <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              <span>${del.location}</span>
+            </div>
+
+            <div class="inline-block px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-bold text-slate-200 mb-3">
+              ⚡ ${del.vehicle}
+            </div>
+
+            <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-3">
+              "${del.note}"
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
+            <span>Handia Showroom (Pillar 8)</span>
+            <span class="text-emerald-400 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Happy Customer
+            </span>
+          </div>
+        </div>
+
+      </div>
+    `).join("");
+  },
+
+  setupListeners: function() {
+    const fileInput = document.getElementById("delivery-photo-input");
+    if (fileInput) {
+      fileInput.addEventListener("change", (e) => this.handleFileSelect(e));
+    }
+
+    const form = document.getElementById("customer-delivery-form");
+    if (form) {
+      form.addEventListener("submit", (e) => this.handleSubmit(e));
+    }
+  },
+
+  openModal: function() {
+    const modal = document.getElementById("customer-delivery-modal");
+    if (!modal) return;
+
+    modal.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+
+    // Populate vehicle dropdown if needed
+    const select = document.getElementById("delivery-form-vehicle");
+    if (select && select.options.length <= 1) {
+      const list = window.BHARAT_VEHICLES || [];
+      select.innerHTML = '<option value="">-- Select Handover Vehicle / Model --</option>' + 
+        list.map(v => `<option value="${v.name}">${v.name} (${v.series})</option>`).join("") +
+        '<option value="Custom Battery / E-Loader / Spares">Other EV / Custom Delivery</option>';
+    }
+
+    // Set default date to today
+    const dateInput = document.getElementById("delivery-form-date");
+    if (dateInput && !dateInput.value) {
+      dateInput.valueAsDate = new Date();
+    }
+  },
+
+  closeModal: function() {
+    const modal = document.getElementById("customer-delivery-modal");
+    if (modal) {
+      modal.classList.add("hidden");
+      document.body.classList.remove("modal-open");
+    }
+    this.resetForm();
+  },
+
+  resetForm: function() {
+    const form = document.getElementById("customer-delivery-form");
+    if (form) form.reset();
+    this.selectedImageData = null;
+    const preview = document.getElementById("delivery-photo-preview-wrap");
+    const dropzone = document.getElementById("delivery-photo-dropzone");
+    if (preview) preview.classList.add("hidden");
+    if (dropzone) dropzone.classList.remove("hidden");
+  },
+
+  handleFileSelect: function(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select a valid image file (JPEG, PNG, WEBP).");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      this.selectedImageData = event.target.result;
+      const previewWrap = document.getElementById("delivery-photo-preview-wrap");
+      const previewImg = document.getElementById("delivery-photo-preview-img");
+      const dropzone = document.getElementById("delivery-photo-dropzone");
+
+      if (previewImg) previewImg.src = this.selectedImageData;
+      if (previewWrap) previewWrap.classList.remove("hidden");
+      if (dropzone) dropzone.classList.add("hidden");
+    };
+    reader.readAsDataURL(file);
+  },
+
+  removeSelectedPhoto: function() {
+    this.selectedImageData = null;
+    const input = document.getElementById("delivery-photo-input");
+    if (input) input.value = "";
+    const previewWrap = document.getElementById("delivery-photo-preview-wrap");
+    const dropzone = document.getElementById("delivery-photo-dropzone");
+    if (previewWrap) previewWrap.classList.add("hidden");
+    if (dropzone) dropzone.classList.remove("hidden");
+  },
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+
+    const nameInput = document.getElementById("delivery-form-name");
+    const vehicleInput = document.getElementById("delivery-form-vehicle");
+    const locInput = document.getElementById("delivery-form-location");
+    const dateInput = document.getElementById("delivery-form-date");
+    const noteInput = document.getElementById("delivery-form-note");
+
+    const customerName = nameInput ? nameInput.value.trim() : "";
+    const vehicle = vehicleInput ? vehicleInput.value.trim() : "";
+    const location = locInput ? locInput.value.trim() : "Handia, Prayagraj";
+    const rawDate = dateInput ? dateInput.value : "";
+    const note = noteInput ? noteInput.value.trim() : "";
+
+    if (!customerName) {
+      alert("Please enter customer name.");
+      return;
+    }
+    if (!vehicle) {
+      alert("Please select or enter the vehicle/product delivered.");
+      return;
+    }
+
+    // Default fallback photo if none selected
+    const photoUrl = this.selectedImageData || "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&auto=format&fit=crop&q=80";
+
+    let formattedDate = "Today";
+    if (rawDate) {
+      try {
+        const d = new Date(rawDate);
+        formattedDate = d.toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' });
+      } catch (err) {
+        formattedDate = rawDate;
+      }
+    }
+
+    const newDelivery = {
+      id: "del-" + Date.now(),
+      customerName,
+      location: location || "Handia, Prayagraj",
+      vehicle,
+      deliveryDate: formattedDate,
+      photoUrl,
+      note: note || `Keys handed over to ${customerName} at Bharat Electric Motors, Pillar No. 8, Handia.`,
+      isCustom: true
+    };
+
+    this.deliveries.unshift(newDelivery);
+    this.saveToStorage();
+    this.render();
+    this.closeModal();
+
+    alert(`🎉 Success! Photo with ${customerName} has been published to the Showroom Delivery Gallery.`);
+    
+    // Smooth scroll to gallery
+    const galleryEl = document.getElementById("customer-deliveries");
+    if (galleryEl) {
+      galleryEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  },
+
+  deleteDelivery: function(id) {
+    if (!confirm("Are you sure you want to remove this delivery photo?")) return;
+    this.deliveries = this.deliveries.filter(d => d.id !== id);
+    this.saveToStorage();
+    this.render();
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   App.init();
 });
 
 if (typeof window !== "undefined") {
   window.App = App;
+  window.CustomerDeliveries = CustomerDeliveries;
 }

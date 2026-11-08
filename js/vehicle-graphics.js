@@ -328,7 +328,123 @@ const VEHICLE_GRAPHICS = {
         BHARAT HYPERDRIVE™ 96.2% EFFICIENCY ARCHITECTURE
       </text>
     </svg>
-  `
+  `,
+
+  // Maxvolt Smart Lithium-ion & LFP EV Battery Pack Vector
+  getBatterySVG: (colorHex = "#10B981") => `
+    <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="vehicle-vector-svg">
+      <defs>
+        <linearGradient id="batteryBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1E293B"/>
+          <stop offset="60%" stop-color="#0F172A"/>
+          <stop offset="100%" stop-color="#020617"/>
+        </linearGradient>
+        <linearGradient id="batteryGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#10B981" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Soft Ground Shadow -->
+      <ellipse cx="220" cy="235" rx="150" ry="12" fill="#000000" opacity="0.4" filter="blur(6px)"/>
+
+      <!-- Heavy-Duty Aluminum Metal Enclosure Case -->
+      <rect x="110" y="55" width="220" height="165" rx="16" fill="url(#batteryBodyGrad)" stroke="#334155" stroke-width="4"/>
+      
+      <!-- Top Ergonomic Carry Handle -->
+      <path d="M170 55 L170 32 C170 26 176 22 182 22 L258 22 C264 22 270 26 270 32 L270 55" fill="none" stroke="#64748B" stroke-width="8" stroke-linecap="round"/>
+      <rect x="186" y="20" width="68" height="10" rx="4" fill="#0F172A" stroke="#94A3B8" stroke-width="2"/>
+
+      <!-- Terminals & Heavy Duty SB50 Connectors -->
+      <rect x="135" y="42" width="24" height="14" rx="4" fill="#EF4444" stroke="#DC2626" stroke-width="2"/>
+      <text x="147" y="53" text-anchor="middle" fill="#FFFFFF" font-family="monospace" font-size="11" font-weight="bold">+</text>
+      
+      <rect x="281" y="42" width="24" height="14" rx="4" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+      <text x="293" y="53" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="12" font-weight="bold">-</text>
+
+      <!-- Smart BMS Digital LCD Display Screen -->
+      <rect x="145" y="75" width="150" height="42" rx="8" fill="#020617" stroke="#00F0FF" stroke-width="2"/>
+      <text x="160" y="94" fill="#00F0FF" font-family="monospace" font-size="11" font-weight="bold">60V 30Ah LiFePO4</text>
+      <text x="160" y="108" fill="#10B981" font-family="monospace" font-size="10" font-weight="bold">BMS ACTIVE &bull; 100% HEALTH</text>
+      
+      <!-- Charge Level 5-Bar Graphic -->
+      <g>
+        <rect x="255" y="85" width="6" height="16" rx="1.5" fill="#10B981"/>
+        <rect x="263" y="85" width="6" height="16" rx="1.5" fill="#10B981"/>
+        <rect x="271" y="85" width="6" height="16" rx="1.5" fill="#10B981"/>
+        <rect x="279" y="85" width="6" height="16" rx="1.5" fill="#10B981"/>
+      </g>
+
+      <!-- Heat Dissipation Ribs -->
+      <line x1="130" y1="135" x2="310" y2="135" stroke="#334155" stroke-width="2.5"/>
+      <line x1="130" y1="145" x2="310" y2="145" stroke="#334155" stroke-width="2.5"/>
+      <line x1="130" y1="155" x2="310" y2="155" stroke="#334155" stroke-width="2.5"/>
+
+      <!-- Official Brand Badge & Warranty Shield -->
+      <rect x="145" y="172" width="150" height="32" rx="6" fill="#111827" stroke="${colorHex}" stroke-width="1.5"/>
+      <text x="220" y="186" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">MAXVOLT ENERGY</text>
+      <text x="220" y="198" text-anchor="middle" fill="${colorHex}" font-family="sans-serif" font-size="9" font-weight="bold">3-5 YR REPLACEMENT GUARANTEE</text>
+    </svg>
+  `,
+
+  // Heavy-Duty Commercial Electric Cargo Loader (E-Loader) Vector
+  getLoaderSVG: (colorHex = "#F59E0B") => `
+    <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="vehicle-vector-svg">
+      <defs>
+        <radialGradient id="wheelGradLoader" cx="50%" cy="50%" r="50%">
+          <stop offset="65%" stop-color="#1E293B"/>
+          <stop offset="85%" stop-color="#0F172A"/>
+          <stop offset="100%" stop-color="#020617"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Soft Ground Shadow -->
+      <ellipse cx="220" cy="236" rx="180" ry="14" fill="#000000" opacity="0.45" filter="blur(6px)"/>
+
+      <!-- Rear Heavy-Duty Wheels -->
+      <g class="wheel rear-wheel">
+        <circle cx="120" cy="198" r="38" fill="url(#wheelGradLoader)" stroke="#334155" stroke-width="5"/>
+        <circle cx="120" cy="198" r="22" fill="#0B0F17" stroke="#475569" stroke-width="2.5"/>
+        <circle cx="120" cy="198" r="12" fill="#64748B" stroke="#CBD5E1" stroke-width="2"/>
+        <!-- Heavy Leaf Springs Suspension -->
+        <path d="M75 190 Q120 205 165 190" stroke="#64748B" stroke-width="5" fill="none"/>
+      </g>
+
+      <!-- Front Steer Wheel -->
+      <g class="wheel front-wheel">
+        <circle cx="345" cy="198" r="38" fill="url(#wheelGradLoader)" stroke="#334155" stroke-width="5"/>
+        <circle cx="345" cy="198" r="22" fill="#0B0F17" stroke="#475569" stroke-width="2.5"/>
+        <circle cx="345" cy="198" r="12" fill="#64748B" stroke="#CBD5E1" stroke-width="2"/>
+      </g>
+
+      <!-- Reinforced Cargo Bed (Box) -->
+      <rect x="65" y="95" width="185" height="85" rx="8" fill="#1E293B" stroke="${colorHex}" stroke-width="3"/>
+      <!-- Cargo Bed Vertical Reinforcements -->
+      <line x1="110" y1="95" x2="110" y2="180" stroke="#334155" stroke-width="2.5"/>
+      <line x1="155" y1="95" x2="155" y2="180" stroke="#334155" stroke-width="2.5"/>
+      <line x1="200" y1="95" x2="200" y2="180" stroke="#334155" stroke-width="2.5"/>
+      
+      <!-- Cargo Capacity Text -->
+      <rect x="95" y="125" width="125" height="26" rx="5" fill="#0F172A" stroke="#475569" stroke-width="1.5"/>
+      <text x="157" y="142" text-anchor="middle" fill="${colorHex}" font-family="sans-serif" font-size="11" font-weight="900">400 KG PAYLOAD</text>
+
+      <!-- Driver Cabin & Windshield Frame -->
+      <path d="M250 180 L250 120 L275 80 L320 80 L350 145 L320 180 Z" fill="#0F172A" stroke="#475569" stroke-width="3"/>
+      <!-- Windshield Glass -->
+      <polygon points="278,85 315,85 342,140 285,140" fill="#06B6D4" opacity="0.3" stroke="#00F0FF" stroke-width="1.5"/>
+
+      <!-- Heavy Duty Front Suspension Fork -->
+      <line x1="322" y1="120" x2="345" y2="198" stroke="#94A3B8" stroke-width="6" stroke-linecap="round"/>
+      <rect x="328" y="140" width="10" height="24" rx="2" fill="#CBD5E1"/>
+
+      <!-- Front Headlight & Mudguard -->
+      <path d="M320 170 Q345 155 370 175" stroke="${colorHex}" stroke-width="5" fill="none"/>
+      <circle cx="355" cy="135" r="9" fill="#FEF08A" stroke="#F59E0B" stroke-width="2"/>
+
+      <!-- Driver Seat -->
+      <path d="M255 140 L285 140 L280 160 L250 160 Z" fill="#18181B" stroke="#334155" stroke-width="2"/>
+    </svg>
+  `,
 };
 
 if (typeof window !== "undefined") {

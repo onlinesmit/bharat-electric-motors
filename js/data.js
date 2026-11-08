@@ -18,14 +18,158 @@ const BHARAT_BRAND = {
   salesEmail: "sales@bharatelectricmotors.com",
   supportEmail: "support@bharatelectricmotors.com",
   serviceEmail: "service@bharatelectricmotors.com",
-  address: "Pillar no. 8, Lala Bazar, GT Road, Handiya Prayagraj, UP - 221503",
+  address: "Near Pillar no. 8, In Front of LIC Office, GT Road, Lala Bazar, Purani Handia, Handiya Prayagraj, UP - 221503",
+  landmark: "In Front of LIC Office, Near Pillar No. 8, GT Road",
   city: "Handiya, Prayagraj",
   state: "Uttar Pradesh"
 };
 
-// ==================== BHARAT PROPRIETARY FLEET ====================
+// ==================== BHARAT & AUTHORIZED DEALERSHIP FLEET ====================
 const BHARAT_VEHICLES = [
-  // ---------- SCOOTERS ----------
+  // ---------- AUTHORIZED SCOOTERS (WARIVO & OKINAWA) ----------
+  {
+    id: "warivo-crx",
+    name: "Warivo CRX Electric Scooter",
+    series: "Warivo Authorized Dealer",
+    category: "scooter",
+    badge: "Warivo Official",
+    tagline: "High-speed sporty electric scooter with 75 km/h speed, fast charging, and dual disc brakes.",
+    description: "Official Warivo Motors authorized dealership model available directly at Bharat Electric Motors, Handia. Engineered with a high-torque BLDC motor, dual hydraulic disc brakes, smart anti-theft remote lock, and long-range lithium battery option.",
+    exShowroomPrice: 79999,
+    subsidy: 11000,
+    rtoCharges: 900,
+    insurance: 3800,
+    topSpeed: 75,
+    certifiedRange: 120,
+    realWorldRange: 95,
+    acceleration: "0-40 km/h in 3.9s",
+    batteryCapacity: 2.8,
+    batteryType: "Warivo Smart Li-ion (Detachable Option)",
+    batteryRemovable: true,
+    chargingTimeStandard: "3.5 hrs (Home 5A Socket)",
+    chargingTimeFast: "60 mins to 80%",
+    motorName: "Warivo High-Torque BLDC Hub Motor",
+    motorPower: "2.5 kW Peak",
+    motorTorque: "46 Nm",
+    motorType: "Waterproof BLDC Hub Motor (IP67)",
+    carryingCapacity: 155,
+    kerbWeight: 92,
+    bootSpace: "24 Litres Storage",
+    warrantyBattery: "3 Years Comprehensive Warranty",
+    warrantyVehicle: "3 Years Vehicle Warranty",
+    ridingModes: ["Eco", "City", "Turbo"],
+    brakes: "Front Disc & Rear Drum with CBS",
+    suspension: "Hydraulic Telescopic Front & Dual Spring Rear",
+    features: [
+      "Official Warivo Motors warranty & genuine parts at Handia showroom",
+      "Smart digital LED instrument cluster with speed and battery meter",
+      "Remote keyless entry with anti-theft motion alarm",
+      "USB phone charging port in front apron",
+      "Reverse assist button for effortless parking"
+    ],
+    colors: [
+      { name: "Gloss Red", hex: "#EF4444" },
+      { name: "Pearl White", hex: "#F8FAFC" },
+      { name: "Midnight Black", hex: "#111827" }
+    ],
+    accentColor: "#EF4444"
+  },
+  {
+    id: "warivo-queen",
+    name: "Warivo Queen Electric Scooter",
+    series: "Warivo Authorized Dealer",
+    category: "scooter",
+    badge: "Family Comfort",
+    tagline: "Ultra-comfortable family scooter with wide floorboard, smooth ride, and low running cost.",
+    description: "Specially crafted for everyday family convenience. Features comfortable cushion seating, smooth acceleration, front storage glove box, and economical operating cost of only 20 paise/km. Zero noise, zero vibration.",
+    exShowroomPrice: 68500,
+    subsidy: 9500,
+    rtoCharges: 850,
+    insurance: 3200,
+    topSpeed: 60,
+    certifiedRange: 100,
+    realWorldRange: 82,
+    acceleration: "0-40 km/h in 4.8s",
+    batteryCapacity: 2.2,
+    batteryType: "Smart LiFePO4 / Advanced LFP",
+    batteryRemovable: true,
+    chargingTimeStandard: "3.5 hrs (Standard 5A Socket)",
+    chargingTimeFast: "Standard AC",
+    motorName: "Warivo Silent Drive 1500W BLDC",
+    motorPower: "1.8 kW Peak (1.2 kW Rated)",
+    motorTorque: "38 Nm",
+    motorType: "Direct BLDC Hub Motor",
+    carryingCapacity: 150,
+    kerbWeight: 84,
+    bootSpace: "22 Litres Underseat Space",
+    warrantyBattery: "3 Years Replacement Warranty",
+    warrantyVehicle: "3 Years Warranty",
+    ridingModes: ["Eco", "Power"],
+    brakes: "Front Disc & Rear Drum with Electronic Braking",
+    suspension: "Telescopic Fork Front & Dual Hydraulic Rear",
+    features: [
+      "Wide flat floorboard for carrying groceries and gas cylinders",
+      "Ultra-plush seat with pillion backrest included",
+      "Low running cost: barely 20 paise per kilometer",
+      "Central locking with anti-theft siren",
+      "All-weather IP67 sealed wiring and motor"
+    ],
+    colors: [
+      { name: "Sky Cyan", hex: "#06B6D4" },
+      { name: "Glossy Grey", hex: "#4B5563" },
+      { name: "Candy Red", hex: "#DC2626" }
+    ],
+    accentColor: "#06B6D4"
+  },
+  {
+    id: "okinawa-praisepro",
+    name: "Okinawa PraisePro",
+    series: "Okinawa Authorized Partner",
+    category: "scooter",
+    badge: "Detachable Battery",
+    tagline: "Detachable 2.0 kWh lithium battery, 86 km/h top speed, and 137 km certified range.",
+    description: "The Okinawa PraisePro delivers proven performance, aggressive sport styling, and a detachable lithium-ion battery you can easily take inside your house or office to charge. Available with full dealer support and original parts at Bharat Electric Motors.",
+    exShowroomPrice: 84999,
+    subsidy: 12500,
+    rtoCharges: 950,
+    insurance: 4100,
+    topSpeed: 86,
+    certifiedRange: 137,
+    realWorldRange: 110,
+    acceleration: "0-40 km/h in 3.5s",
+    batteryCapacity: 2.08,
+    batteryType: "Detachable Lithium-ion (Microtek Cells)",
+    batteryRemovable: true,
+    chargingTimeStandard: "2.5 to 3.0 hrs (Fast Home Wall Charger)",
+    chargingTimeFast: "2.5 hrs 100% Charge",
+    motorName: "Okinawa 2500W BLDC Waterproof Motor",
+    motorPower: "2.5 kW Peak BLDC",
+    motorTorque: "48 Nm",
+    motorType: "High-Efficiency BLDC Waterproof Motor (IP65)",
+    carryingCapacity: 160,
+    kerbWeight: 96,
+    bootSpace: "Under-seat helmet storage",
+    warrantyBattery: "3 Years / Unlimited km Battery Warranty",
+    warrantyVehicle: "3 Years Vehicle Warranty",
+    ridingModes: ["Eco", "Sports", "Turbo"],
+    brakes: "Dual Hydraulic Disc Brakes (Front & Rear) with E-ABS",
+    suspension: "Hydraulic Telescopic Front & Dual Tube Rear Shocker",
+    features: [
+      "Detachable battery: lift and charge anywhere in 2.5-3 hours",
+      "Dual disc brakes with electronic Regenerative E-ABS",
+      "Find My Scooter, Walk Assist & Keyless Go",
+      "CNC machined aluminum brake levers & projector headlamp",
+      "High ground clearance of 175mm for rural and GT Road terrain"
+    ],
+    colors: [
+      { name: "Glossy Red Black", hex: "#B91C1C" },
+      { name: "Sparkle Black", hex: "#18181B" },
+      { name: "Desert Blue", hex: "#1D4ED8" }
+    ],
+    accentColor: "#B91C1C"
+  },
+
+  // ---------- SIGNATURE SCOOTERS ----------
   {
     id: "bharat-veloce-pro",
     name: "Bharat Veloce Pro",
@@ -359,6 +503,150 @@ const BHARAT_VEHICLES = [
       { name: "Graphite Anthracite", hex: "#374151" }
     ],
     accentColor: "#06B6D4"
+  },
+  {
+    id: "motovolt-hum",
+    name: "Motovolt Hum Multi-Utility E-Cycle",
+    series: "Motovolt Smart E-Cycles",
+    category: "cycle",
+    badge: "Heavy Duty 150kg Payload",
+    tagline: "India's strongest multi-utility electric cycle with heavy load carrier. No license, no registration!",
+    description: "Official Motovolt dealership model available at Bharat Electric Motors, Handia. Built like an electric workhorse with a heavy-duty luggage carrier capable of transporting up to 150 kg payload. Detachable battery with smartphone app connectivity, ideal for milkmen, grocery delivery, students, and daily commuters.",
+    exShowroomPrice: 38999,
+    subsidy: 2500,
+    rtoCharges: 0,
+    insurance: 950,
+    topSpeed: 25,
+    certifiedRange: 75,
+    realWorldRange: 62,
+    acceleration: "Instant 5-level pedal assist & throttle",
+    batteryCapacity: 0.58,
+    batteryType: "Removable Smart Li-ion Pack (IP67)",
+    batteryRemovable: true,
+    chargingTimeStandard: "3.0 hrs (Smart Home Adapter)",
+    chargingTimeFast: "Standard AC",
+    motorName: "Motovolt 250W Heavy-Torque BLDC",
+    motorPower: "250W Geared Motor",
+    motorTorque: "44 Nm High-Climb Torque",
+    motorType: "Rear Wheel Geared Hub Motor",
+    carryingCapacity: 150,
+    kerbWeight: 24,
+    bootSpace: "Heavy Duty Rear Cargo Rack included",
+    warrantyBattery: "3 Years Warranty",
+    warrantyVehicle: "Lifetime Frame Warranty, 2 Years Motor",
+    ridingModes: ["Pedal Assist (5 Levels)", "Full Electric Throttle", "Pedal Only"],
+    brakes: "Front & Rear Mechanical Disc Brakes with Motor Cutoff",
+    suspension: "Heavy Duty Front Suspension Fork",
+    features: [
+      "100% Legal Exemption: No Driving License, Helmet Law or RTO Registration required",
+      "Heavy-duty cargo carrier designed for crates, delivery boxes & pillion",
+      "Detachable lockable battery with USB powerbank output",
+      "Motovolt smartphone connectivity for GPS tracking & lock",
+      "High-durability puncture resistant fat-tread tires"
+    ],
+    colors: [
+      { name: "Sun Yellow", hex: "#EAB308" },
+      { name: "Forest Green", hex: "#15803D" },
+      { name: "Stealth Black", hex: "#1E293B" }
+    ],
+    accentColor: "#EAB308"
+  },
+
+  // ---------- AUTHORIZED LITHIUM BATTERIES (MAXVOLT ENERGY) ----------
+  {
+    id: "maxvolt-lithium-60v",
+    name: "Maxvolt Smart Lithium Battery Pack (60V / 72V)",
+    series: "Maxvolt Energy Authorized",
+    category: "battery",
+    badge: "3-5 Yr Guarantee",
+    tagline: "Authorized Maxvolt Energy Hub. Smart BMS, 2000+ charge cycles, and 3 to 5 years replacement warranty.",
+    description: "Convert your old lead-acid electric scooter or e-rickshaw into a high-range lithium EV, or upgrade your existing battery pack. Built with automotive-grade Grade-A NMC/LFP cells and a Smart BMS with thermal and short-circuit protection. On-the-spot installation at Bharat Electric Motors, Handia.",
+    exShowroomPrice: 28500,
+    subsidy: 0,
+    rtoCharges: 0,
+    insurance: 0,
+    topSpeed: 0,
+    certifiedRange: 90,
+    realWorldRange: 80,
+    acceleration: "Instant continuous power",
+    batteryCapacity: 1.8,
+    batteryType: "Maxvolt Grade-A LiFePO4 / NMC with Smart BMS",
+    batteryRemovable: true,
+    chargingTimeStandard: "2.5 - 3.5 hrs (Fast Charger Included)",
+    chargingTimeFast: "2.0 hrs (with 10A Fast Charger)",
+    motorName: "Compatible with all 60V / 72V BLDC & PMSM Motors",
+    motorPower: "Supports up to 3.5 kW Motor Output",
+    motorTorque: "Peak Discharge 60A",
+    motorType: "Universal EV Battery Pack",
+    carryingCapacity: 0,
+    kerbWeight: 14,
+    bootSpace: "Compact aluminum metal casing fits all scooter battery bays",
+    warrantyBattery: "3 Years to 5 Years Replacement Warranty Card",
+    warrantyVehicle: "1 Year Charger Warranty",
+    ridingModes: ["Full Compatibility with all EV Scooters"],
+    brakes: "Built-in Electronic Short Circuit & Overcharge Cut-Off",
+    suspension: "Vibration-proof silicone cell potting",
+    features: [
+      "3 to 5 Years Official Manufacturer Replacement Guarantee",
+      "Smart BMS prevents over-heating, over-charging and deep discharge",
+      "Ultra-lightweight: only 14 kg compared to 45 kg lead-acid batteries",
+      "Increases vehicle pickup, range, and hill climbing capacity",
+      "Old lead-acid battery exchange discount available at showroom"
+    ],
+    colors: [
+      { name: "Metallic Grey", hex: "#4B5563" },
+      { name: "Matte Black", hex: "#111827" }
+    ],
+    accentColor: "#10B981"
+  },
+
+  // ---------- COMMERCIAL ELECTRIC CARGO & E-LOADERS ----------
+  {
+    id: "commercial-eloader-400",
+    name: "Commercial E-Loader 400kg Hauler",
+    series: "Commercial Cargo Series",
+    category: "loader",
+    badge: "Heavy Commercial Cargo",
+    tagline: "400 kg payload electric cargo loader. Cut daily delivery fuel cost by up to 90%.",
+    description: "Purpose-built for grocery store owners, vegetable and grain vendors, logistics distributors, and factory haulage across Handia and Prayagraj. Features a reinforced steel cargo bed, heavy leaf-spring suspension, and a high-gradeability differential motor.",
+    exShowroomPrice: 98000,
+    subsidy: 15000,
+    rtoCharges: 1200,
+    insurance: 4500,
+    topSpeed: 45,
+    certifiedRange: 95,
+    realWorldRange: 80,
+    acceleration: "High-torque loaded haulage",
+    batteryCapacity: 3.2,
+    batteryType: "Heavy Duty 60V Deep Cycle / Lithium Option",
+    batteryRemovable: false,
+    chargingTimeStandard: "5.0 hrs (Standard 15A Socket)",
+    chargingTimeFast: "Fast Charge Ready",
+    motorName: "1500W High-Torque Differential Gearbox BLDC",
+    motorPower: "2.2 kW Peak Differential Motor",
+    motorTorque: "85 Nm Low-End Hauling Torque",
+    motorType: "Direct Differential Rear Axle Motor",
+    carryingCapacity: 400,
+    kerbWeight: 185,
+    bootSpace: "Heavy Duty 4.5 ft x 3.5 ft Steel Cargo Bed",
+    warrantyBattery: "3 Years Comprehensive Guarantee",
+    warrantyVehicle: "2 Years Chassis & Motor Warranty",
+    ridingModes: ["Low Gear Haul (Hill Climb)", "Standard Cargo Run"],
+    brakes: "Heavy-Duty Front Drum & Dual Rear Hydraulic Brakes",
+    suspension: "Reinforced Front Hydraulic Forks & Rear Multi-Leaf Springs",
+    features: [
+      "400+ kg certified carrying capacity with drop-down side gates",
+      "Running cost under 25 paise/km compared to ₹3.50/km for petrol/diesel 3-wheelers",
+      "High gradeability gear for easily climbing flyovers and market ramps",
+      "Reverse buzzer and heavy-duty steel front bumper",
+      "Available with flexible commercial finance & subsidy at Handia showroom"
+    ],
+    colors: [
+      { name: "Commercial Amber", hex: "#F59E0B" },
+      { name: "Royal Blue", hex: "#1D4ED8" },
+      { name: "Forest Green", hex: "#15803D" }
+    ],
+    accentColor: "#F59E0B"
   }
 ];
 
@@ -422,16 +710,17 @@ const BHARAT_BRANCHES = [
   {
     id: "flagship-hub-handiya",
     name: "Bharat Electric Motors Flagship Showroom & Experience Center",
-    type: "Flagship Showroom & EV Experience Hub",
-    address: "Pillar no. 8, Lala Bazar, GT Road, Handiya Prayagraj, UP - 221503",
-    landmark: "Pillar No. 8, Lala Bazar, GT Road",
+    type: "Flagship Showroom, Authorized Dealership & EV Experience Hub",
+    address: "Near Pillar no. 8, In Front of LIC Office, GT Road, Lala Bazar, Purani Handia, Handiya Prayagraj, UP - 221503",
+    landmark: "In Front of LIC Office, Near Pillar No. 8, GT Road",
     phone: "+91 80095 79794",
     altPhone: "+91 98750 52329",
     whatsapp: "8009579794",
     hours: "Monday – Sunday: 9:00 AM – 8:30 PM (Open 7 Days)",
     facilities: [
+      "Authorized Dealership for Warivo, Okinawa, Motovolt & Maxvolt",
       "Exclusive Bharat Electric Motors Experience Showcase",
-      "Dedicated EV Test Ride Track & Safe Trials",
+      "Dedicated EV Test Ride Track & Safe Trials on GT Road",
       "Fast Charging & Battery Health Station",
       "Customer VIP Lounge & Free Wi-Fi",
       "Instant 15-Minute Paperless Loan Approval Desk",
@@ -443,7 +732,7 @@ const BHARAT_BRANCHES = [
     id: "service-diagnostics-handiya",
     name: "Bharat Certified Service & Diagnostics Hub",
     type: "Authorized Service, Battery Balancing & Genuine Spares Hub",
-    address: "Near Pillar no. 8, Lala Bazar, GT Road, Handiya Prayagraj, UP - 221503",
+    address: "Near Pillar no. 8, In Front of LIC Office, GT Road, Lala Bazar, Handiya Prayagraj, UP - 221503",
     phone: "+91 80095 79794",
     altPhone: "+91 98750 52329",
     whatsapp: "8009579794",
@@ -451,7 +740,7 @@ const BHARAT_BRANCHES = [
     facilities: [
       "Dedicated Bharat EV Diagnostics Service Bays",
       "Computerized Cell Balancing & Health Restoration",
-      "100% Genuine Bharat Electric Motors OEM Spare Parts",
+      "100% Genuine Warivo, Okinawa, Maxvolt & Bharat OEM Spare Parts",
       "Water-Wading & Monsoon Seal Testing",
       "24x7 Emergency Roadside Assistance (RSA) Dispatch"
     ],
@@ -462,76 +751,142 @@ const BHARAT_BRANCHES = [
 // ==================== BUYER FAQS ====================
 const BHARAT_FAQS = [
   {
-    question: "Why choose Bharat Electric Motors over third-party multi-brand dealers?",
-    answer: "Bharat Electric Motors is not a middleman or aggregator. We are an integrated electric vehicle showroom and company offering proprietary Bharat HyperDrive™ motors, PowerCell™ battery packs, and purpose-built vehicle chassis. When you buy from Bharat Electric Motors at Pillar no. 8, Handiya Prayagraj, you receive direct manufacturer pricing, zero hidden commissions, direct factory warranty, and dedicated after-sales service with 100% genuine parts."
+    question: "Why choose Bharat Electric Motors at Pillar No. 8, Handia?",
+    answer: "Bharat Electric Motors is the trusted EV showroom & authorized dealer in Handia Prayagraj for top brands like Warivo Motors, Okinawa, Motovolt, and Maxvolt Lithium Energy, along with our signature electric line. When you buy from us at Pillar No. 8, Handia, you receive direct manufacturer pricing, zero hidden commissions, genuine factory warranty, and dedicated after-sales service right on GT Road."
   },
   {
     question: "How do government subsidies (Central PM E-Drive & UP State EV Policy) work on Bharat vehicles?",
-    answer: "Every Bharat electric scooter and motorcycle is certified under the Central PM E-Drive scheme and Uttar Pradesh EV policies. We deduct your eligible subsidy directly from the invoice upfront at our Handiya Prayagraj showroom. You don't need to run around RTO offices — you pay only the net on-road price directly."
+    answer: "Every electric scooter and motorcycle sold by Bharat Electric Motors is certified under the Central PM E-Drive scheme and Uttar Pradesh EV policies. We deduct your eligible subsidy directly from the invoice upfront at our Handia Prayagraj showroom. You don't need to run around RTO offices — you pay only the net on-road price directly."
   },
   {
-    question: "How durable is the Bharat PowerCell™ battery and what is the replacement guarantee?",
-    answer: "Our PowerCell™ battery packs utilize tier-1 chemistry engineered for over 1,800 full charge-discharge cycles — equivalent to 8 to 10+ years of typical daily commuting (over 1,00,000 km). Our models include comprehensive battery health warranties. If battery capacity drops below 70% during the warranty period, we repair or replace the pack under warranty."
+    question: "How durable is the Maxvolt Smart Lithium battery and what is the replacement guarantee?",
+    answer: "Maxvolt lithium battery packs utilize Grade-A automotive cells engineered for over 2,000 full charge-discharge cycles (6 to 8+ years of daily riding). Every pack comes backed by an official 3 to 5 Year Replacement Guarantee. If capacity drops during the warranty, your battery is repaired or replaced without hassle."
   },
   {
     question: "Are Bharat Electric Motors vehicles safe to ride during heavy monsoons and waterlogged roads?",
-    answer: "Absolutely. All Bharat electric motors, battery packs, controllers, and wiring harnesses carry an IP67 water and dust ingress protection rating. IP67 certification means these core components can withstand heavy rain and water puddles up to 1 meter for 30 minutes without electrical leakage or damage."
+    answer: "Absolutely. All electric motors, battery packs, controllers, and wiring harnesses carry an IP67 water and dust ingress protection rating. IP67 certification means these core components can withstand heavy rain and water puddles up to 1 meter for 30 minutes without electrical leakage or damage."
   },
   {
     question: "What is the true running cost per kilometer compared to a petrol scooter?",
-    answer: "A standard petrol scooter costs ₹2.30 to ₹2.50 per km in fuel alone, plus engine oil changes. A Bharat electric vehicle costs merely 20 to 25 paise per kilometer in electricity! Daily commuters in Prayagraj and nearby areas save ₹2,500 to ₹3,500 every single month."
+    answer: "A standard petrol scooter costs ₹2.30 to ₹2.50 per km in fuel alone, plus periodic engine oil changes. A Bharat electric vehicle costs merely 20 to 25 paise per kilometer in electricity! Daily commuters in Handia, Saidabad, and Prayagraj save ₹2,500 to ₹3,500 every single month."
   },
   {
-    question: "Do I need a Driving License, Helmet, or RTO Registration for Bharat E-Cycles?",
-    answer: "No! Under Ministry of Road Transport and Highways (MoRTH) regulations, electric cycles equipped with motors of 250W or less and a top speed limited to 25 km/h (such as the Bharat TrailBlazer 29T and UrbanLite E1) are legally classified as non-motorized pedelecs. They require NO Driving License, NO Vehicle Registration, and NO mandatory road tax, making them ideal for students and daily commuting."
+    question: "Do I need a Driving License, Helmet, or RTO Registration for Motovolt & Bharat E-Cycles?",
+    answer: "No! Under Ministry of Road Transport and Highways (MoRTH) regulations, electric cycles equipped with motors of 250W or less and a top speed limited to 25 km/h (such as Motovolt Hum and Bharat TrailBlazer) are legally classified as non-motorized pedelecs. They require NO Driving License, NO Vehicle Registration, and NO mandatory road tax, making them ideal for students, shopkeepers, and daily commuting."
   },
   {
     question: "Can I trade in my old petrol scooter or motorcycle at Bharat Electric Motors?",
-    answer: "Yes! Our Green Exchange Program accepts any petrol two-wheeler of any make or age. Our evaluators at Pillar no. 8, Handiya inspect the vehicle in 15 minutes, offer you fair market value, plus an exclusive green exchange bonus credited directly towards your new EV down payment."
+    answer: "Yes! Our Green Exchange Program accepts any petrol two-wheeler or old battery scooter of any make or age. Our evaluators at Pillar no. 8, Handia inspect the vehicle in 15 minutes, offer you fair market value, plus an exclusive green exchange bonus credited directly towards your new EV down payment."
   }
 ];
 
-// ==================== VERIFIED OWNER REVIEWS ====================
+// ==================== VERIFIED OWNER REVIEWS (IndiaMART & Justdial 4.9★) ====================
 const BHARAT_REVIEWS = [
   {
     name: "Sunil Kumar Maurya",
-    location: "Handiya, Prayagraj",
-    model: "Bharat Veloce Pro",
+    location: "Purani Handia, Prayagraj",
+    model: "Warivo CRX Electric Scooter",
+    purchaseDate: "2 weeks ago",
+    rating: 5,
+    source: "IndiaMART Verified Buyer",
+    savingsText: "Saving ₹3,400 monthly on my daily Handia to Prayagraj commute!",
+    review: "Bought Warivo CRX from Bharat Electric Motors at Pillar No. 8. Pickup is super fast, 120 km range is genuine, and the owner handed over keys in just 15 minutes with instant finance approval. Best EV dealer in Prayagraj!",
+    verified: true
+  },
+  {
+    name: "Ramji Tripathi",
+    location: "Lala Bazar, Handia",
+    model: "Maxvolt 60V Lithium Battery Pack",
+    purchaseDate: "1 month ago",
+    rating: 5,
+    source: "Justdial 5-Star Review",
+    savingsText: "Replaced old lead-acid battery — range boosted to 85 km with 3 yr warranty!",
+    review: "My old electric scooter was struggling with dead lead-acid batteries. Visited Bharat Electric Motors in Lala Bazar and they installed a Maxvolt 60V Lithium pack with smart BMS in 40 minutes. Comes with 3-year replacement guarantee card. Outstanding service!",
+    verified: true
+  },
+  {
+    name: "Dharmendra Patel",
+    location: "GT Road, Saidabad",
+    model: "Motovolt Hum Multi-Utility E-Cycle",
+    purchaseDate: "3 weeks ago",
+    rating: 5,
+    source: "IndiaMART Verified Buyer",
+    savingsText: "Carrying 80kg grocery crates daily without spending 1 rupee on petrol!",
+    review: "Motovolt Hum is a true powerhouse! Heavy luggage carrier easily carries milk cans and grocery boxes. No license or registration required. Smit and team at Bharat Electric Motors explained everything and gave a live test ride.",
+    verified: true
+  },
+  {
+    name: "Anoop Kesarwani",
+    location: "Handia Market, Prayagraj",
+    model: "Commercial E-Loader 400kg Hauler",
+    purchaseDate: "1 month ago",
+    rating: 5,
+    source: "IndiaMART Verified Buyer",
+    savingsText: "Daily logistics fuel cost dropped from ₹350/day to ₹30/day!",
+    review: "We purchased the 400kg electric cargo loader for market wholesale deliveries. Heavy leaf spring suspension handles rough village roads easily. 100% reliable machine backed by local Handia warranty.",
+    verified: true
+  },
+  {
+    name: "Vijay Pratap Singh",
+    location: "Purani Handia, Prayagraj",
+    model: "Okinawa PraisePro",
     purchaseDate: "2 months ago",
     rating: 5,
-    savingsText: "Saving ₹3,200 every month on my daily Handiya - Prayagraj commute!",
-    review: "Switching from my 125cc petrol bike to Bharat Veloce Pro was my best decision. The acceleration on GT Road is super smooth, and the team at Pillar no. 8 Handiya showroom handled everything including instant finance. Top quality electric motor!",
+    source: "Google 5-Star Review",
+    savingsText: "Detachable battery charges conveniently inside my 1st floor apartment!",
+    review: "I live on the first floor, so Okinawa PraisePro's detachable battery is a blessing. Just take it upstairs and charge with regular 5A socket in 3 hours. Great staff at Pillar No. 8 showroom.",
     verified: true
   },
   {
-    name: "Rameshwar Tiwari",
-    location: "GT Road, Prayagraj",
-    model: "Bharat Glide S",
-    purchaseDate: "3 months ago",
-    rating: 5,
-    savingsText: "140 km range and huge boot space for family daily runs!",
-    review: "The Bharat Glide S is extremely comfortable for my entire family. Big floorboard, zero vibration, and whisper-quiet motor. Bharat Electric Motors in Handiya provided wonderful delivery service.",
-    verified: true
-  },
-  {
-    name: "Deepak Yadav",
-    location: "Lala Bazar, Handiya",
-    model: "Bharat EcoCity+",
-    purchaseDate: "1 month ago",
-    rating: 5,
-    savingsText: "Detachable battery charges easily from regular socket at home!",
-    review: "The twin portable batteries are so convenient — I just detach and charge inside my home. Super low running cost of barely 20 paise per km. Highly recommended for everyone in Handiya!",
-    verified: true
-  },
-  {
-    name: "Mohd. Aslam",
+    name: "Pooja Bind",
     location: "Civil Lines, Prayagraj",
-    model: "Bharat Thunderbolt F1",
-    purchaseDate: "1 month ago",
+    model: "Bharat Glide S Family Scooter",
+    purchaseDate: "2 months ago",
     rating: 5,
-    savingsText: "130 km/h top speed with instant electric pickup!",
-    review: "Bharat Electric Motors has built a real beast with Thunderbolt F1. The pickup off the line leaves petrol bikes behind. Best electric showroom in Prayagraj region with direct WhatsApp support.",
+    source: "Justdial 5-Star Review",
+    savingsText: "Huge 34-litre boot space and ultra-smooth ride for family use!",
+    review: "The Bharat Glide S is so comfortable for my family. Big floorboard, zero vibration, and whisper-quiet motor. Bharat Electric Motors provided quick delivery with paperless billing.",
     verified: true
+  }
+];
+
+// ==================== CUSTOMER DELIVERY SHOWCASE RECORDS ====================
+const BHARAT_DEFAULT_DELIVERIES = [
+  {
+    id: "del-101",
+    customerName: "Vikram Patel",
+    location: "Purani Handia, Prayagraj",
+    vehicle: "Warivo CRX Electric Scooter",
+    deliveryDate: "05 Nov 2026",
+    photoUrl: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&auto=format&fit=crop&q=80",
+    note: "Proud owner taking delivery of Warivo CRX at Pillar No. 8 Handia showroom with 3-year warranty card & helmet!"
+  },
+  {
+    id: "del-102",
+    customerName: "Ramji Tripathi",
+    location: "Lala Bazar, Handia",
+    vehicle: "Maxvolt 60V 30Ah Lithium Battery Upgrade",
+    deliveryDate: "02 Nov 2026",
+    photoUrl: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=800&auto=format&fit=crop&q=80",
+    note: "Replaced old heavy lead-acid batteries with Maxvolt smart lithium pack. 85 km range on single charge!"
+  },
+  {
+    id: "del-103",
+    customerName: "Dharmendra Patel",
+    location: "GT Road, Saidabad",
+    vehicle: "Motovolt Hum Multi-Utility E-Cycle",
+    deliveryDate: "28 Oct 2026",
+    photoUrl: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&auto=format&fit=crop&q=80",
+    note: "Heavy carrier Motovolt Hum delivery for daily milk & grocery supply. No license needed, pure savings!"
+  },
+  {
+    id: "del-104",
+    customerName: "Sunil Kumar Maurya",
+    location: "Handia, Prayagraj",
+    vehicle: "Okinawa PraisePro (Detachable Battery)",
+    deliveryDate: "24 Oct 2026",
+    photoUrl: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&auto=format&fit=crop&q=80",
+    note: "On-road delivery with instant Aadhaar subsidy deduction. Key handover by Bharat Electric Motors team."
   }
 ];
 
@@ -542,6 +897,7 @@ if (typeof window !== "undefined") {
   window.BHARAT_BRANCHES = BHARAT_BRANCHES;
   window.BHARAT_FAQS = BHARAT_FAQS;
   window.BHARAT_REVIEWS = BHARAT_REVIEWS;
+  window.BHARAT_DEFAULT_DELIVERIES = BHARAT_DEFAULT_DELIVERIES;
   // Compatibility alias
   window.EV_CATALOG = BHARAT_VEHICLES;
   window.DEALERSHIP_BRANCHES = BHARAT_BRANCHES;
