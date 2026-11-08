@@ -1,6 +1,10 @@
 # ⚡ Bharat Electric Motors - Flagship EV Showroom & Brand Platform
 
-Official web platform for **Bharat Electric Motors Mobility Pvt. Ltd.** located at **Pillar no. 8, Lala Bazar, GT Road, Handiya, Prayagraj, Uttar Pradesh - 221503**.
+Official web platform for **Bharat Electric Motors Mobility Pvt. Ltd.** located at **Near Pillar no. 8, In Front of LIC Office, GT Road, Lala Bazar, Purani Handia, Handiya, Prayagraj, Uttar Pradesh - 221503**.
+
+🌐 **Live Website (GitHub Pages):** [https://onlinesmit.github.io/bharat-electric-motors/](https://onlinesmit.github.io/bharat-electric-motors/)  
+⭐ **Rating:** 4.9 / 5.0 (79+ Verified Reviews on IndiaMART & Justdial)  
+📱 **Helpline / WhatsApp:** +91 80095 79794, +91 98750 52329  
 
 > **Designed & Developed by Smit & Team** ⚡
 
@@ -8,30 +12,34 @@ Official web platform for **Bharat Electric Motors Mobility Pvt. Ltd.** located 
 
 ## 🌟 Key Features
 
-### 1. 🛵 Signature Electric Vehicle Lineup
-* **Bharat Veloce Pro:** 115 km/h, 185 km Range, 8.5 kW HyperDrive™ PMSM, 0–40 in 2.9s (`₹1,39,999`)
-* **Bharat Glide S:** 85 km/h, 140 km Range, 34-Litre Mega Boot, Ultra-Plush Family Seating (`₹1,18,500`)
-* **Bharat EcoCity+:** 68 km/h, 125 km Range, Twin Detachable Apartment-Friendly Battery Packs (`₹89,900`)
-* **Bharat Thunderbolt F1:** 130 km/h Streetfighter, 210 km Range, 14.0 kW PMSM, Bosch Dual ABS (`₹1,74,999`)
-* **Bharat Striker 350:** 95 km/h Neo-Roadster, 160 km Range, Ultra-Safe LFP Battery (`₹1,42,000`)
-* **Bharat TrailBlazer 29T:** 25 km/h, 60 km Range, Shimano 21-Speed MTB E-Bike (No License Required) (`₹46,999`)
-* **Bharat UrbanLite E1:** 25 km/h, 50 km Range, Lightweight In-Tube Battery City Hybrid (`₹36,999`)
+### 1. 🛵 Authorized Dealership & Signature Fleet
+* **Warivo Motors Electric Scooters:** Warivo CRX (75 km/h, 120 km range) & Warivo Queen (family utility scooter with flat floorboard).
+* **Okinawa Electric Scooters:** Okinawa PraisePro with detachable lithium battery (2.5 hr charging, 86 km/h).
+* **Motovolt Smart E-Cycles:** Motovolt Hum with 150 kg heavy-duty cargo rack, smart mobile app & no license/registration requirement.
+* **Maxvolt Energy Lithium Batteries:** 60V / 72V Smart BMS Lithium-ion & LFP packs with **3 to 5 Years Replacement Guarantee Card** & old battery exchange bonus.
+* **Commercial E-Loader Cargo:** 400 kg certified payload electric loader for market and grocery delivery.
+* **Bharat Signature Fleet:** Bharat Veloce Pro (115 km/h, 185 km), Glide S, EcoCity+ (twin detachable packs), Thunderbolt F1 (130 km/h), and TrailBlazer 29T.
 
-### 2. 🛡️ 2-Step Test Ride Booking & Owner Approvals Desk
+### 2. 📸 Customer Delivery & Happy Owners Gallery
+* Dedicated gallery showcasing customers receiving keys outside the Handia showroom.
+* **Owner Photo Upload Tool:** Owners can snap/upload customer handover photos with customer name, vehicle, delivery date, and review note.
+* Stored with browser `localStorage` persistence and 1-click management.
+
+### 3. 🛡️ 2-Step Test Ride Booking & Owner Approvals Desk
 * **Step 1 (Customer Submit):** Real-time booking creates a pending request (`BE-TR-xxxxx`) with instant direct WhatsApp link to the owner (`8009579794`).
-* **Step 2 (Owner Notification & Review):** Live floating toast notification alerts the owner on the website. An **Owner Desk** modal displays customer details (Name, Phone, Model, Date & Slot, Locality) with 1-click **Accept & Confirm** or **WhatsApp Rider**.
+* **Step 2 (Owner Notification & Review):** Live floating toast notification alerts the owner on the website. An **Owner Desk** modal displays customer details with 1-click **Accept & Confirm** or **WhatsApp Rider**.
 * **Step 3 (Confirmed VIP Pass):** Once accepted, the digital VIP Pass with green checkmark (✓), slot confirmation, and WhatsApp sharing is issued.
 
-### 3. 🧾 Dealership Owner Billing Desk & GST Tax Invoice Generator
+### 4. 🧾 Dealership Owner Billing Desk & GST Tax Invoice Generator
 * Full GST-compliant tax invoice & cash receipt system with official seal & customer signature blocks.
 * Auto-calculation of ex-showroom price, central/state subsidy deductions, RTO, insurance, accessories, extended warranty, and old vehicle exchange bonuses.
 * Automatic **Indian Currency Number-to-Words** conversion.
 * 🖨️ Clean A4 print layout via `@media print`.
 * 📲 1-click WhatsApp invoice share with customer.
 
-### 4. 🧮 Interactive Buyer Decision Tools
+### 5. 🧮 Interactive Buyer Decision Tools
 * **Loan EMI Calculator:** Sliders for down payment, interest rate (from 6.99% p.a.), and tenure with monthly installment output.
-* **Fuel vs. EV Savings Calculator:** Compares petrol costs (₹102/L) against EV electricity charging (₹7/unit) with environmental impact (CO2 & trees saved).
+* **Fuel vs. EV Savings Calculator:** Compares petrol costs (₹102/L) against EV electricity charging (₹7/unit) with environmental impact.
 * **Old Vehicle Exchange Evaluator:** Instant trade-in valuation with +₹3,000 Bharat Green Bonus.
 
 ### 5. 💬 Instant WhatsApp & Call Showroom Integration
